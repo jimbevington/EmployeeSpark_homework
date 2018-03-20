@@ -68,6 +68,24 @@ public class EngineersController {
 
         }, new VelocityTemplateEngine());
 
+
+        get("/engineers/update/:engineerId", (req, res) -> {
+
+            int engineerId = Integer.parseInt(req.params(":engineerId"));
+
+            HashMap<String, Object> model = new HashMap<>();
+            model.put("template", "templates/engineers/update.vtl");
+
+            Engineer engineer = DBHelper.find(engineerId, Engineer.class);
+            model.put("engineer", engineer);
+
+            List<Department> departments = DBHelper.getAll(Department.class);
+            model.put("departments", departments);
+
+            return new ModelAndView(model, "templates/layout.vtl");
+
+        }, new VelocityTemplateEngine());
+
     }
 
 
