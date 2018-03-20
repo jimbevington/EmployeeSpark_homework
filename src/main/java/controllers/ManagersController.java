@@ -75,7 +75,8 @@ public class ManagersController {
 
         }, new VelocityTemplateEngine());
 
-//        update & delete
+
+//        update
         get("/managers/update/:managerId", (req, res) -> {
 
             HashMap<String, Object> model = new HashMap<>();
@@ -92,6 +93,7 @@ public class ManagersController {
 
         }, new VelocityTemplateEngine());
 
+//        save update
         post("/managers/update", (req, res) -> {
 
 //            assign form info to parameters
@@ -116,8 +118,9 @@ public class ManagersController {
             res.redirect("/managers");
             return null;
 
-
         }, new VelocityTemplateEngine());
 
+
+//        & delete
     }
 }
