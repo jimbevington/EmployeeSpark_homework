@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class DepartmentController {
 
@@ -43,7 +44,19 @@ public class DepartmentController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+
         //    save new
+        post("/departments", (req, res) -> {
+
+            String title = req.queryParams("title");
+
+            Department department = new Department(title);
+            DBHelper.save(department);
+
+            res.redirect("/departments");
+            return null;
+
+        }, new VelocityTemplateEngine());
 
 //        could add an employees by department route
 
