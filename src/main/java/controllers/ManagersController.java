@@ -5,6 +5,7 @@ import models.Department;
 import models.Manager;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
+import sun.security.pkcs11.Secmod;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,6 +72,24 @@ public class ManagersController {
 
             res.redirect("/managers");
             return null;
+
+        }, new VelocityTemplateEngine());
+
+//        update & delete
+        get("managers/update", (req, res) -> {
+
+            HashMap<String, Object> model = new HashMap<>();
+            model.put("template", "templates/managers/update.vtl");
+
+            int managerId = 233;
+//            int managerId = Integer.parseInt(req.queryParams(":managerId"));
+            Manager manager = DBHelper.find(managerId, Manager.class);
+            model.put("manager", manager);
+
+            List<Department> departments = DBHelper.getAll(Department.class);
+            model.put("departments", departments);
+
+            return new ModelAndView(model, "templates/layout.vtl");
 
         }, new VelocityTemplateEngine());
 

@@ -1,0 +1,36 @@
+<!-- should send info to managers, -->
+<p class="pageHeader">Update Manager</p>
+
+<form action="/managers/update/$manager.getId()" method="post">
+
+    <!-- for's must point to ID-->
+    <label for="firstName">First Name</label>
+    <input id="firstName" type="text" class="inputbox" name="firstName" required value="$manager.getFirstName()">
+
+    <label for="lastName">Last Name</label>
+    <input id="lastName" type="text" class="inputbox" name="lastName" required value="$manager.getLastName()">
+
+    <label for="department">Department</label>
+    <select id="department" name="department">
+
+        #foreach($department in $departments)
+        <option value="$department.getId()"
+                #if ($department.getId() == $manager.getDepartment().getId())
+                selected
+                #end
+        >
+            $department.getTitle()
+        </option>
+        #end
+
+    </select>
+
+    <label for="salary">Salary</label>
+    <input id="salary" type="number" class="inputbox" name="salary" required value="$manager.getSalary()">
+
+    <label for="budget">Budget</label>
+    <input id="budget" type="number" class="inputbox" name="budget" value="$manager.getBudget()">
+
+    <input type="submit" value="Save" class="button">
+
+</form>
