@@ -2,11 +2,14 @@ package controllers;
 
 import db.DBHelper;
 import models.Department;
+import models.Employee;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import static spark.Spark.get;
 
@@ -35,6 +38,8 @@ public class DepartmentController {
 
 
         //    save new
+
+//        could add an employees by department route
 
     }
 
