@@ -1,0 +1,9 @@
+body {
+    background-color: hotpink;
+}
+
+th, td{
+    background-color: beige;
+    padding: 15px;
+    border: solid aquamarine 2px;
+}

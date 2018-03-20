@@ -1,0 +1,32 @@
+<!-- should send info to managers, -->
+<p class="pageHeader">New Manager</p>
+
+<form action="/managers" method="post">
+
+    <!-- for's must point to ID-->
+    <label for="firstName">First Name</label>
+    <input id="firstName" type="text" class="inputbox" name="firstName" required>
+
+    <label for="lastName">Last Name</label>
+    <input id="lastName" type="text" class="inputbox" name="lastName" required>
+
+    <label for="department">Department</label>
+    <select id="department" name="department">
+
+        #foreach($department in $departments)
+            <option value="$department.getId()">
+                $department.getTitle()
+            </option>
+        #end
+
+    </select>
+
+    <label for="salary">Salary</label>
+    <input id="salary" type="number" class="inputbox" name="salary" required>
+
+    <label for="budget">Budget</label>
+    <input id="budget" type="number" class="inputbox" name="budget">
+
+    <input type="submit" value="Save" class="button">
+
+</form>
