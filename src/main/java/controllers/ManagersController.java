@@ -76,7 +76,7 @@ public class ManagersController {
         }, new VelocityTemplateEngine());
 
 //        update & delete
-        get("managers/update/:managerId", (req, res) -> {
+        get("/managers/update/:managerId", (req, res) -> {
 
             HashMap<String, Object> model = new HashMap<>();
             model.put("template", "templates/managers/update.vtl");
@@ -89,6 +89,33 @@ public class ManagersController {
             model.put("departments", departments);
 
             return new ModelAndView(model, "templates/layout.vtl");
+
+        }, new VelocityTemplateEngine());
+
+        post("/managers/update", (req, res) -> {
+
+//            assign form info to parameters
+            int id = Integer.parseInt(req.queryParams("id"));
+            String firstName = req.queryParams("firstName");
+            String lastName = req.queryParams("lastName");
+            int salary = Integer.parseInt(req.queryParams("salary"));
+            double budget = Double.parseDouble(req.queryParams("budget"));
+
+//            get Department id to FIND the specific department
+            int departmentId = Integer.parseInt(req.queryParams("department"));
+            Department department = DBHelper.find(departmentId, Department.class);
+
+//          get the manager from DB, set properties, then save
+            Manager manager = DBHelper.find(id, Manager.class);
+            manager.setFirstName(firstName);
+            manager.setLastName(lastName);
+            manager.setSalary(salary);
+            manager.setBudget(budget);
+            DBHelper.save(manager);
+
+            res.redirect("/managers");
+            return null;
+
 
         }, new VelocityTemplateEngine());
 
