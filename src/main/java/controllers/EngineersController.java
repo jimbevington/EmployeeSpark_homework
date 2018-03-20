@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class EngineersController {
 
@@ -50,7 +51,22 @@ public class EngineersController {
 
 
 //        save new
+        post("/engineers", (req, res) -> {
 
+            String firstName = req.queryParams("firstName");
+            String lastName = req.queryParams("lastName");
+            int salary = Integer.parseInt(req.queryParams("salary"));
+
+            int departmentId = Integer.parseInt(req.queryParams("department"));
+            Department department = DBHelper.find(departmentId, Department.class);
+
+            Engineer engineer = new Engineer(firstName, lastName, salary, department);
+            DBHelper.save(engineer);
+
+            res.redirect("/engineers");
+            return null;
+
+        }, new VelocityTemplateEngine());
 
     }
 
