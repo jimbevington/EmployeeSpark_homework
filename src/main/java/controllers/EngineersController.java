@@ -86,6 +86,27 @@ public class EngineersController {
 
         }, new VelocityTemplateEngine());
 
+        post("/engineers/update", (req, res) -> {
+
+            int id = Integer.parseInt(req.queryParams("id"));
+            String firstName = req.queryParams("firstName");
+            String lastName = req.queryParams("lastName");
+            int salary = Integer.parseInt(req.queryParams("salary"));
+            int departmentId = Integer.parseInt(req.queryParams("department"));
+
+            Department department = DBHelper.find(departmentId, Department.class);
+
+            Engineer engineer = DBHelper.find(id, Engineer.class);
+            engineer.setFirstName(firstName);
+            engineer.setLastName(lastName);
+            engineer.setSalary(salary);
+            engineer.setDepartment(department);
+            DBHelper.save(engineer);
+
+            res.redirect("/engineers");
+            return null;
+        }, new VelocityTemplateEngine());
+
     }
 
 
