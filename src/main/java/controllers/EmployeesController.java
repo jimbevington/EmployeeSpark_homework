@@ -23,6 +23,7 @@ public class EmployeesController {
 
         ManagersController managersController = new ManagersController();
         EngineersController engineersController = new EngineersController();
+        DepartmentController departmentController = new DepartmentController();
 
         get("/employees", (req, res) -> {
 
