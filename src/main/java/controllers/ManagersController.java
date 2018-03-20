@@ -76,13 +76,12 @@ public class ManagersController {
         }, new VelocityTemplateEngine());
 
 //        update & delete
-        get("managers/update", (req, res) -> {
+        get("managers/update/:managerId", (req, res) -> {
 
             HashMap<String, Object> model = new HashMap<>();
             model.put("template", "templates/managers/update.vtl");
 
-            int managerId = 233;
-//            int managerId = Integer.parseInt(req.queryParams(":managerId"));
+            int managerId = Integer.parseInt(req.params(":managerId"));
             Manager manager = DBHelper.find(managerId, Manager.class);
             model.put("manager", manager);
 

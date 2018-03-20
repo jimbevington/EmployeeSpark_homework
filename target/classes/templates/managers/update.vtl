@@ -14,6 +14,8 @@
     <select id="department" name="department">
 
         #foreach($department in $departments)
+
+        <!--set selected it the id matches the manager's departments id-->
         <option value="$department.getId()"
                 #if ($department.getId() == $manager.getDepartment().getId())
                 selected
@@ -31,6 +33,6 @@
     <label for="budget">Budget</label>
     <input id="budget" type="number" class="inputbox" name="budget" value="$manager.getBudget()">
 
-    <input type="submit" value="Save" class="button">
+    <input type="submit" value="Update" class="button">
 
 </form>
