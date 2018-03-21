@@ -87,9 +87,9 @@ public class EngineersController {
 
         }, new VelocityTemplateEngine());
 
-        post("/engineers/update", (req, res) -> {
+        post("/engineers/:id", (req, res) -> {
 
-            int id = Integer.parseInt(req.queryParams("id"));
+            int id = Integer.parseInt(req.params("id"));
             String firstName = req.queryParams("firstName");
             String lastName = req.queryParams("lastName");
             int salary = Integer.parseInt(req.queryParams("salary"));

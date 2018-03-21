@@ -1,9 +1,8 @@
 <!-- should send info to managers, -->
 <p class="pageHeader">Update Manager</p>
 
-<form action="/managers/update" method="post">
+<form action="/managers/$manager.getId()" method="post">
 
-    <input name="id" type="hidden" value="$manager.getId()">
 
     <!-- for's must point to ID-->
     <label for="firstName">First Name</label>

@@ -2,9 +2,9 @@
 
 <div class="container">
 
-    <form action="/engineers/update" method="post">
+    <form action="/engineers/$engineer.getId()" method="post">
 
-        <input name="id" type="hidden" value="$engineer.getId()">
+        <!--<input name="id" type="hidden" value="$engineer.getId()">-->
 
         <label for="firstName">First Name</label>
         <input id="firstName" name="firstName" type="text" required class="textbox" value="$engineer.getFirstName()">

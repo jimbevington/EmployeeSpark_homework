@@ -94,10 +94,10 @@ public class ManagersController {
         }, new VelocityTemplateEngine());
 
 //        save update
-        post("/managers/update", (req, res) -> {
+        post("/managers/:id", (req, res) -> {
 
 //            assign form info to parameters
-            int id = Integer.parseInt(req.queryParams("id"));
+            int id = Integer.parseInt(req.params("id"));
             String firstName = req.queryParams("firstName");
             String lastName = req.queryParams("lastName");
             int salary = Integer.parseInt(req.queryParams("salary"));
@@ -113,6 +113,7 @@ public class ManagersController {
             manager.setLastName(lastName);
             manager.setSalary(salary);
             manager.setBudget(budget);
+            manager.setDepartment(department);
             DBHelper.save(manager);
 
             res.redirect("/managers");
