@@ -109,9 +109,20 @@ public class EngineersController {
         }, new VelocityTemplateEngine());
 
 
-        get("/engineers/delete/:engineerId", (req, res) -> {
+//        get("/engineers/delete/:engineerId", (req, res) -> {
+//
+//            int id = Integer.parseInt(req.params(":engineerid"));
+//
+//            Engineer engineer = DBHelper.find(id, Engineer.class);
+//            DBHelper.delete(engineer);
+//
+//            res.redirect("/engineers");
+//            return null;
+//        }, new VelocityTemplateEngine());
 
-            int id = Integer.parseInt(req.params(":engineerid"));
+        post("/engineers/delete", (req, res) -> {
+
+            int id = Integer.parseInt(req.queryParams("id"));
 
             Engineer engineer = DBHelper.find(id, Engineer.class);
             DBHelper.delete(engineer);

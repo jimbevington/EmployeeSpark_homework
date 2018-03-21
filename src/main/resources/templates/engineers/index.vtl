@@ -20,7 +20,13 @@
                 <td>$engineer.getSalary()</td>
                 <td>$engineer.getDepartment().getTitle()</td>
                 <td><a href="/engineers/update/$engineer.getId()">Update</a></td>
-                <td><a href="/engineers/delete/$engineer.getId()">Delete</a></td>
+                <td>
+                <form action="engineers/delete" method="post">
+                    <input type="hidden" value="$engineer.getId()" name="id">
+                    <input type="submit" value="Delete" >
+                </form>
+                </td>
+                <!--<td><a href="/engineers/delete/$engineer.getId()">Delete</a></td>-->
             </tr>
         #end
 
