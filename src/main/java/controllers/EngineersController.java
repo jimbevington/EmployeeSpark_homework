@@ -14,6 +14,7 @@ import java.util.List;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.Spark.delete;
 
 public class EngineersController {
 
@@ -107,16 +108,17 @@ public class EngineersController {
             return null;
         }, new VelocityTemplateEngine());
 
-//        get("engineers/delete/:engineerId", (req, res) -> {
-//
-//            int id = Integer.parseInt(req.params(":engineer_id"));
-//
-//            Engineer engineer = DBHelper.find(id, Engineer.class);
-//            DBHelper.delete(engineer);
-//
-//            res.redirect("/engineers");
-//            return null;
-//        }, new VelocityTemplateEngine());
+
+        get("/engineers/delete/:engineerId", (req, res) -> {
+
+            int id = Integer.parseInt(req.params(":engineerid"));
+
+            Engineer engineer = DBHelper.find(id, Engineer.class);
+            DBHelper.delete(engineer);
+
+            res.redirect("/engineers");
+            return null;
+        }, new VelocityTemplateEngine());
 
     }
 
